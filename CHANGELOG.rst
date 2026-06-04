@@ -51,6 +51,22 @@ New DebOps roles
 Changed
 ~~~~~~~
 
+General
+'''''''
+
+- The ``community.mysql.mysql_*`` Ansible modules have been renamed to
+  ``ansible.mysql.mysql_*`` due to their move to the Ansible Community
+  collection. The roles which use them have been updated, existing
+  installations should update their Ansible Collections to get the updated
+  Community collection.
+
+:ref:`debops.pki` role
+''''''''''''''''''''''
+
+- The :command:`certbot` DNS-01 ACME challenge and X.509 certificate requests
+  can now be handled by other PKI providers than Let's Encrypt by providing the
+  relevant API URL endpoints. Check the role documentation for details.
+
 :ref:`debops.slapd` role
 ''''''''''''''''''''''''
 
@@ -102,12 +118,21 @@ General
   by allowing guests to modify their own MAC addresses by default. This can be
   controlled per-guest if needed.
 
-:ref:`debops.sshd` role
-'''''''''''''''''''''''
+:ref:`debops.nsswitch` role
+'''''''''''''''''''''''''''
 
-- Fixed the code used to detect the installed OpenSSH version that selected the
-  preferred key exchange, cipher and MAC algorithms. OpenSSH v10.x+ versions
-  should now be detected correctly.
+- A change in the :file:`/etc/nsswitch.conf` configuration file by the role
+  will no longer restart the :command:`systemd-logind` service automatically
+  (file changes are handled automatically since Debian Bookworm).
+
+:ref:`debops.postgresql_server` role
+''''''''''''''''''''''''''''''''''''
+
+- The ``postgresql.conf`` template no longer emits the ``db_user_namespace``
+  parameter on PostgreSQL 14 and newer, where it was removed and causes the
+  server to refuse to start (e.g. Debian 13 / Trixie packages). The setting
+  is still rendered for older major versions so existing inventories can
+  override it via ``item.db_user_namespace``.
 
 :ref:`debops.pki` role
 ''''''''''''''''''''''
@@ -119,6 +144,13 @@ General
 - In the :command:`pki-realm` script, ensure that certain :command:`certbot`
   command options and their arguments are separated with a spaca. This fixes an
   issue with ACME DNS-01 challenge not being processed correctly.
+
+:ref:`debops.sshd` role
+'''''''''''''''''''''''
+
+- Fixed the code used to detect the installed OpenSSH version that selected the
+  preferred key exchange, cipher and MAC algorithms. OpenSSH v10.x+ versions
+  should now be detected correctly.
 
 
 `debops v3.3.0`_ - 2026-03-13

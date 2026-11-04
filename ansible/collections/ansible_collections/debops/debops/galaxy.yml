@@ -26,19 +26,7 @@ issues: "https://github.com/debops/debops/issues"
 
 readme: "README.md"
 license:
-  - "AGPL-3.0-only"
-  - "Apache-2.0"
-  - "BSD-4-Clause"
-  - "CC0-1.0"
-  - "CC-BY-3.0"
-  - "CC-BY-SA-4.0"
-  - "GPL-2.0-only"
-  - "GPL-2.0-or-later"
-  - "GPL-3.0-only"
   - "GPL-3.0-or-later"
-  - "ISC"
-  - "MIT"
-  - "OLDAP-2.8"
 
 tags:
   - "debian"
